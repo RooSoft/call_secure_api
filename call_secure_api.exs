@@ -1,11 +1,16 @@
 defmodule HTTPGetter do
-  def main([cert, macaroon, url]) do
+  def main([cert, macaroon, url, output_filename]) do
     :ssl.start()
     :inets.start()
-    get(cert, macaroon, url) |> IO.write()
+    contents = get(cert, macaroon, url)
+    File.write!(output_filename, contents)
   end
 
-  def main(_), do: die("Usage: call_secure_api.exs <cert filename> <macaroon filename> <url>")
+  def main(_),
+    do:
+      die(
+        "Usage: call_secure_api.exs <cert filename> <macaroon filename> <url> <output_filename>"
+      )
 
   defp die(msg) do
     IO.puts(:stderr, msg)
