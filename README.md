@@ -3,5 +3,5 @@
 ## Example calling LND on an umbrel, passing the cert and the macaroon
 
 ```bash
-elixir call_umbrel.exs ~/.lnd/lnd.cert ~/.lnd/readonly.macaroon https://umbrel:8080/v1/state
+elixir call_secure_api.exs ~/.lnd/lnd.cert ~/.lnd/readonly.macaroon https://umbrel:8080/v1/state
 ```
