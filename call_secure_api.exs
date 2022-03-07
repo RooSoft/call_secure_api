@@ -14,7 +14,7 @@ defmodule HTTPGetter do
 
   defp get_headers(macaroon_filename) do
     [
-      {'MACAROON_HEADER', 'Grpc-Metadata-macaroon: #{read_macaroon(macaroon_filename)}'}
+      {'Grpc-Metadata-macaroon', macaroon_filename |> read_macaroon |> to_charlist}
     ]
   end
 
@@ -26,7 +26,7 @@ defmodule HTTPGetter do
     [ssl: [cacertfile: cert_filename]]
   end
 
-  defp get(macaroon_filename, cert_filename, url) do
+  defp get(cert_filename, macaroon_filename, url) do
     headers = get_headers(macaroon_filename)
     request = {String.to_charlist(url), headers}
     options = get_options(cert_filename)
