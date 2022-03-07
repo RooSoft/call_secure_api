@@ -27,7 +27,7 @@ defmodule HTTPGetter do
     get(cert, macaroon, url) |> IO.write()
   end
 
-  def main(_), do: die("Usage: call_umbrel.exs <cert filename> <macaroon filename> <url>")
+  def main(_), do: die("Usage: call_secure_api.exs <cert filename> <macaroon filename> <url>")
 
   defp read_macaroon(macaroon_filename) do
     File.read!(macaroon_filename) |> Base.encode16()
